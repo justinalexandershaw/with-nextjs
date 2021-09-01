@@ -1,4 +1,6 @@
 import Head from 'next/head'
+import { createWalletSdk } from "@aztec/sdk";
+import { useEffect } from 'react'
 
 export default function Home() {
   // loads aztec when the page loads
