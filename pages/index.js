@@ -1,6 +1,27 @@
 import Head from 'next/head'
 
 export default function Home() {
+  // loads aztec when the page loads
+  useEffect(() => {
+    async function loadAztec() {
+      // initState: 'UNINITIALIZED'
+      const aztecSdk = await createWalletSdk(
+        window.ethereum,
+        "https://api.aztec.network/falafel"
+      );
+      console.info(aztecSdk.getLocalStatus());
+
+      // initState: 'INITIALIZED'
+      await aztecSdk.init();
+      console.info(aztecSdk.getLocalStatus());
+
+      // initState: 'DESTROYED'
+      await aztecSdk.destroy();
+      console.info(aztecSdk.getLocalStatus());
+    }
+    loadAztec();
+  });
+
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-2">
       <Head>
